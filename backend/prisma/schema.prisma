@@ -6,3 +6,141 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum UserRole {
+  ADMIN
+  CASHIER
+  KITCHEN
+  CUSTOMER
+}
+enum TableStatus {
+  AVAILABLE
+  OCCUPIED
+  RESERVED
+  MAINTENANCE
+}
+model User {
+  id           String    @id @default(uuid())
+  fullName     String
+  email        String    @unique
+  password     String
+  phoneNumber  String?
+  role         UserRole
+  isActive     Boolean   @default(true)
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  isActive    Boolean  @default(true)
+
+  menus       Menu[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Menu {
+  id            String    @id @default(uuid())
+  name          String
+  description   String?
+  price         Float
+  imageUrl      String?
+  isAvailable   Boolean   @default(true)
+  isDeleted     Boolean   @default(false)
+
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orderItems    OrderItem[]
+}
+model RestaurantTable {
+  id            String         @id @default(uuid())
+  tableNumber   Int            @unique
+  capacity      Int
+  qrCode        String?
+  status        TableStatus    @default(AVAILABLE)
+  isActive      Boolean        @default(true)
+
+  reservations  Reservation[]
+  orders        Order[]
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+model Reservation {
+  id                  String               @id @default(uuid())
+
+  customerName        String
+  customerPhone       String
+  customerEmail       String?
+
+  reservationDate     DateTime
+  numberOfGuests      Int
+
+  status              ReservationStatus   @default(PENDING)
+
+  tableId             String
+  table               RestaurantTable     @relation(fields: [tableId], references: [id])
+
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+}
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  SERVED
+  COMPLETED
+  CANCELLED
+}
+model Order {
+  id               String         @id @default(uuid())
+
+  orderNumber      String         @unique
+
+  customerName     String?
+  customerPhone    String?
+
+  tableId          String?
+  table            RestaurantTable? @relation(fields: [tableId], references: [id])
+
+  status           OrderStatus   @default(PENDING)
+
+  totalAmount      Float         @default(0)
+
+  orderItems       OrderItem[]
+
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+model OrderItem {
+  id             String    @id @default(uuid())
+
+  orderId        String
+  order          Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  menuId         String
+  menu           Menu      @relation(fields: [menuId], references: [id])
+
+  quantity       Int
+  price          Float
+
+  notes          String?
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
