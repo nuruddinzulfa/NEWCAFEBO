@@ -1,13 +1,23 @@
-import { PrismaClient, User } from "@prisma/client";
+import { prisma } from "../../core/database/prisma";
+import { UserRole } from "@prisma/client";
+
 import { RegisterDto } from "./dto/register.dto";
 
-const prisma = new PrismaClient();
-
 export class AuthRepository {
+  async createUser(
+    data: RegisterDto & {
+      password: string;
+    }
+  ) {
+    return prisma.user.create({
+      data: {
+        ...data,
+        role: UserRole.CUSTOMER
+      }
+    });
+  }
 
-  async findUserByEmail(
-    email: string
-  ): Promise<User | null> {
+  async findUserByEmail(email: string) {
     return prisma.user.findUnique({
       where: {
         email
@@ -15,26 +25,10 @@ export class AuthRepository {
     });
   }
 
-  async findUserById(
-    id: string
-  ): Promise<User | null> {
+  async findUserById(id: string) {
     return prisma.user.findUnique({
       where: {
         id
-      }
-    });
-  }
-
-  async createUser(
-    data: RegisterDto
-  ): Promise<User> {
-    return prisma.user.create({
-      data: {
-        fullName: data.fullName,
-        email: data.email,
-        password: data.password,
-        phoneNumber: data.phoneNumber,
-        role: "ADMIN"
       }
     });
   }
