@@ -1,0 +1,36 @@
+.success {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success .container {
+  max-width: 480px;
+}
+
+.success h1 {
+  font-size: 80px;
+  margin-bottom: 16px;
+  animation: scaleIn 0.6s ease;
+}
+
+.success h2 {
+  font-size: 36px;
+  margin-bottom: 16px;
+  color: var(--secondary);
+}
+
+.success p {
+  color: var(--gray-500);
+  font-size: 17px;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.success .btn-primary {
+  font-size: 16px;
+  padding: 16px 40px;
+}

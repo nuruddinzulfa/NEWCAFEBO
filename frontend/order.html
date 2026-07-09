@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order | Kopilogi</title>
+
+    <link rel="stylesheet" href="assets/css/global/base.css">
+    <link rel="stylesheet" href="assets/css/global/navbar.css">
+    <link rel="stylesheet" href="assets/css/pages/order.css">
+    <link rel="stylesheet" href="assets/css/global/footer.css">
+    <link rel="stylesheet" href="assets/css/global/responsive.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="container">
+
+            <div class="logo">
+
+                ☕ Kopilogi
+
+            </div>
+
+            <div class="nav-links">
+
+                <a href="index.html">Beranda</a>
+                <a href="menu.html">Menu</a>
+                <a href="reservasi.html">Reservasi</a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <section class="order-page">
+
+        <div class="container">
+
+            <div class="order-grid">
+
+                <!-- MENU -->
+
+                <div>
+
+                    <h2>Daftar Menu</h2>
+
+                    <div id="menuContainer"></div>
+
+                </div>
+
+                <!-- CART -->
+
+                <div class="cart">
+
+                    <h2>Keranjang</h2>
+
+                    <div id="cartContainer">
+
+                        <p>Belum ada menu.</p>
+
+                    </div>
+
+                    <div class="cart-total">
+
+                        <h3>Total</h3>
+
+                        <h2 id="grandTotal">Rp0</h2>
+
+                    </div>
+
+                    <button id="checkoutBtn" class="btn btn-primary">
+
+                        Checkout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/order.js"></script>
+
+</body>
+
+</html>

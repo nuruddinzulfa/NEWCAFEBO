@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kopilogi Cafe</title>
+
+    <link rel="stylesheet" href="assets/css/global/base.css">
+    <link rel="stylesheet" href="assets/css/global/navbar.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
+    <link rel="stylesheet" href="assets/css/global/footer.css">
+    <link rel="stylesheet" href="assets/css/global/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="container">
+
+            <div class="logo">
+
+                ☕ Kopilogi
+
+            </div>
+
+            <div class="nav-links">
+
+                <a href="index.html">Beranda</a>
+                <a href="menu.html">Menu</a>
+                <a href="#" onclick="goReservation()">Reservasi</a>
+
+            </div>
+
+            <a href="#" onclick="goReservation()" class="btn btn-primary">
+
+                Reservasi
+
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="container hero-grid">
+
+            <div>
+
+                <span class="badge">
+
+                    ☕ Nikmati kopi & santapan hangat
+
+                </span>
+
+                <h1>
+
+                    Kopi tersaji,<br>
+                    momen tersimpan.
+
+                </h1>
+
+                <p>
+
+                    Scan QR di meja untuk memesan langsung,
+                    atau reservasi tempat favoritmu sebelum datang.
+
+                </p>
+
+                <div class="hero-button">
+
+                    <a href="menu.html" class="btn btn-primary">
+
+                        Pesan dari meja
+
+                    </a>
+
+                    <a href="#" onclick="goReservation()" class="btn btn-outline">
+
+                        Reservasi
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Menu Hari Ini -->
+
+            <div class="today-menu">
+
+                <div class="today-header">
+
+                    <h3>MENU HARI INI</h3>
+
+                    <span>Rekomendasi</span>
+
+                </div>
+
+                <div id="menuContainer">
+
+                    <p>Memuat menu...</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= STATS ================= -->
+
+    <section class="stats">
+
+        <div class="container stat-grid">
+
+            <div>
+
+                <h2>6+</h2>
+
+                <p>Tahun Menyeduh</p>
+
+            </div>
+
+            <div>
+
+                <h2>50K</h2>
+
+                <p>Cup / Bulan</p>
+
+            </div>
+
+            <div>
+
+                <h2>4.8</h2>
+
+                <p>Rating Pelanggan</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= KEUNGGULAN ================= -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Kenapa Memilih Kami?</h2>
+
+            </div>
+
+            <div class="feature-grid">
+
+                <div class="feature">
+
+                    <h3>☕ Premium Coffee</h3>
+
+                    <p>
+
+                        Menggunakan biji kopi pilihan terbaik.
+
+                    </p>
+
+                </div>
+
+                <div class="feature">
+
+                    <h3>🍰 Fresh Dessert</h3>
+
+                    <p>
+
+                        Dibuat setiap hari menggunakan bahan premium.
+
+                    </p>
+
+                </div>
+
+                <div class="feature">
+
+                    <h3>🏡 Cozy Place</h3>
+
+                    <p>
+
+                        Tempat nyaman untuk bekerja maupun bersantai.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= TESTIMONI ================= -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Apa Kata Mereka?</h2>
+
+            </div>
+
+            <div class="testimonial-grid">
+
+                <div class="testimonial">
+
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+
+                    <p>
+
+                        Kopinya sangat enak,
+                        tempatnya nyaman.
+
+                    </p>
+
+                    <h4>Andi</h4>
+
+                </div>
+
+                <div class="testimonial">
+
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+
+                    <p>
+
+                        Barista ramah,
+                        dessert favorit saya.
+
+                    </p>
+
+                    <h4>Salsa</h4>
+
+                </div>
+
+                <div class="testimonial">
+
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+
+                    <p>
+
+                        Cocok untuk meeting
+                        maupun nongkrong.
+
+                    </p>
+
+                    <h4>Rina</h4>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CTA ================= -->
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="cta">
+
+                <h2>
+
+                    Siap Menikmati Kopi Hari Ini?
+
+                </h2>
+
+                <p>
+
+                    Reservasi sekarang tanpa harus antre.
+
+                </p>
+
+                <a href="#" onclick="goReservation()" class="btn btn-primary">
+
+                    Reservasi Sekarang
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+
+                    <h3>☕ Kopilogi</h3>
+
+                    <p>Kopi tersaji, momen tersimpan.</p>
+
+                </div>
+
+                <div>
+
+                    <h3>Jam Operasional</h3>
+
+                    <p>Setiap Hari</p>
+
+                    <p>07.00 - 22.00</p>
+
+                </div>
+
+                <div>
+
+                    <h3>Kontak</h3>
+
+                    <p>halo@kopilogi.id</p>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>&copy; 2026 Kopilogi. All rights reserved.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/home.js"></script>
+
+</body>
+
+</html>
