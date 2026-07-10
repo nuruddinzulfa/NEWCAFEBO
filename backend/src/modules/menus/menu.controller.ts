@@ -43,6 +43,25 @@ export class MenuController {
     }
   }
 
+  async findRecommended(req: Request, res: Response) {
+    try {
+      const result = await menuService.findRecommended();
+
+      return res.status(200).json({
+        success: true,
+        data: result
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to get menus"
+      });
+    }
+  }
+
   async findById(req: Request, res: Response) {
     try {
       const result = await menuService.findById(

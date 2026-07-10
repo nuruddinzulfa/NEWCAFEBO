@@ -60,6 +60,8 @@ async function loadTables() {
 
 loadTables();
 
+document.getElementById("reservationDate").min = new Date().toISOString().split("T")[0];
+
 
 // ==============================
 // SUBMIT
@@ -69,9 +71,16 @@ form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
+    const timeValue = document.getElementById("reservationTime").value;
+
+    if (timeValue < "07:00" || timeValue > "22:00") {
+        alert("Jam reservasi hanya 07.00 - 22.00.");
+        return;
+    }
+
     const reservationDate = new Date(
 
-        `${document.getElementById("reservationDate").value}T${document.getElementById("reservationTime").value}`
+        `${document.getElementById("reservationDate").value}T${timeValue}`
 
     );
 

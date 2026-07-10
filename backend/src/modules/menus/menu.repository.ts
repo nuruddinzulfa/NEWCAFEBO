@@ -25,6 +25,22 @@ export class MenuRepository {
     });
   }
 
+  async findRecommended() {
+    return prisma.menu.findMany({
+      where: {
+        isDeleted: false,
+        isRecommended: true,
+        isAvailable: true
+      },
+      include: {
+        category: true
+      },
+      orderBy: {
+        createdAt: "desc"
+      }
+    });
+  }
+
   async findById(id: string) {
     return prisma.menu.findUnique({
       where: {

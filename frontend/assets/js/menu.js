@@ -136,7 +136,8 @@ function renderMenu(data) {
 
                 <img
                     src="${image}"
-                    alt="${menu.name}">
+                    alt="${menu.name}"
+                    onerror="this.src='assets/images/no-image.png'">
 
                 <div class="card-body">
 

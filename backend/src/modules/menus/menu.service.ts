@@ -36,6 +36,10 @@ export class MenuService {
     return this.menuRepository.findAll();
   }
 
+  async findRecommended() {
+    return this.menuRepository.findRecommended();
+  }
+
   async findById(id: string) {
     const menu =
       await this.menuRepository.findById(id);

@@ -16,9 +16,9 @@ router.get("/test", (_, res) => {
 // CRUD Routes
 router.post("/", protect, categoryController.create);
 
-router.get("/", protect, categoryController.findAll);
+router.get("/", categoryController.findAll);
 
-router.get("/:id", protect, categoryController.findById);
+router.get("/:id", categoryController.findById);
 
 router.patch("/:id", protect, categoryController.update);
 

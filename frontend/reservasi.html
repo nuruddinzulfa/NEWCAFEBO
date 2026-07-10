@@ -32,6 +32,8 @@
                 <a href="index.html">Beranda</a>
                 <a href="menu.html">Menu</a>
                 <a href="reservasi.html">Reservasi</a>
+                <a href="login.html" id="navLogin">Login</a>
+                <a href="#" id="navLogout" style="display:none" onclick="logout()">Logout</a>
 
             </div>
 
@@ -75,7 +77,7 @@
 
                     <label>Tanggal</label>
 
-                    <input placeholder="Pilih tanggal" type="date" id="reservationDate" required>
+                    <input placeholder="Pilih tanggal" type="date" id="reservationDate" min="" required>
 
                 </div>
 
@@ -83,7 +85,7 @@
 
                     <label>Jam</label>
 
-                    <input placeholder="Pilih jam" type="time" id="reservationTime" required>
+                    <input placeholder="Pilih jam" type="time" id="reservationTime" min="07:00" max="22:00" required>
 
                 </div>
 
@@ -117,6 +119,31 @@
 
     <script src="assets/js/api.js"></script>
     <script src="assets/js/reservasi.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem("token");
+            const userData = localStorage.getItem("user");
+            const navLogin = document.getElementById("navLogin");
+            const navLogout = document.getElementById("navLogout");
+
+            if (token && userData) {
+                navLogin.style.display = "none";
+                navLogout.style.display = "inline";
+                try {
+                    const user = JSON.parse(userData);
+                    navLogout.textContent = "Logout (" + user.fullName + ")";
+                } catch(e) {
+                    navLogout.textContent = "Logout";
+                }
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+        }
+    </script>
 
 </body>
 

@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+import path from "path";
 
 import authRoutes from "./modules/auth/auth.routes";
 import categoryRoutes from "./modules/categories/category.routes";
@@ -20,10 +21,16 @@ const app = express();
 // Middlewares
 // ======================================
 app.use(cors());
-app.use(helmet());
+app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ======================================
+// Static Files
+// ======================================
+app.use("/uploads", express.static(path.join(__dirname, "../../frontend/assets/images")));
+app.use("/assets", express.static(path.join(__dirname, "../../frontend/assets")));
 
 // ======================================
 // Health Check

@@ -9,8 +9,9 @@ console.log("MENU ROUTES LOADED");
 
 // CRUD Routes
 router.post("/", protect, menuController.create);
-router.get("/", protect, menuController.findAll);
-router.get("/:id", protect, menuController.findById);
+router.get("/", menuController.findAll);
+router.get("/recommended", menuController.findRecommended);
+router.get("/:id", menuController.findById);
 router.patch("/:id", protect, menuController.update);
 router.delete("/:id", protect, menuController.delete);
 

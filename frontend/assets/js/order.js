@@ -88,7 +88,7 @@ function renderMenu() {
 
             <div class="menu-info">
 
-                <img src="${image}">
+                <img src="${image}" onerror="this.src='assets/images/no-image.png'">
 
                 <div>
 
