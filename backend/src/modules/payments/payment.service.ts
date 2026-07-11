@@ -45,10 +45,11 @@ export class PaymentService {
     }
 
     const totalAmount = order.totalAmount;
+    const minPayment = totalAmount * 0.5;
 
-    if (data.paidAmount < totalAmount) {
+    if (data.paidAmount < minPayment) {
       throw new Error(
-        "Paid amount is not enough"
+        `Minimal pembayaran 50% dari total Rp ${totalAmount.toLocaleString("id-ID")}, yaitu Rp ${minPayment.toLocaleString("id-ID")}`
       );
     }
 
@@ -59,7 +60,7 @@ export class PaymentService {
       await this.paymentRepository.create({
         ...data,
         totalAmount,
-        changeAmount,
+        changeAmount: changeAmount > 0 ? changeAmount : 0,
         status: PaymentStatus.SUCCESS
       });
 

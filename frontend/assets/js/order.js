@@ -6,6 +6,9 @@ const menuContainer = document.getElementById("menuContainer");
 const cartContainer = document.getElementById("cartContainer");
 const grandTotal = document.getElementById("grandTotal");
 const checkoutBtn = document.getElementById("checkoutBtn");
+const tableSelect = document.getElementById("tableId");
+const checkoutModal = document.getElementById("checkoutModal");
+const checkoutForm = document.getElementById("checkoutForm");
 
 const token = localStorage.getItem("token");
 
@@ -19,6 +22,44 @@ if (!token) {
 
 let menus = [];
 let cart = [];
+const urlParams = new URLSearchParams(window.location.search);
+const orderFrom = urlParams.get("from");
+
+// ================================
+// LOAD TABLES
+// ================================
+
+async function loadTables() {
+
+    try {
+
+        const result = await getData("/tables");
+
+        if (!result.success) return;
+
+        result.data.forEach(table => {
+
+            tableSelect.innerHTML += `
+
+                <option value="${table.id}">
+
+                    Meja ${table.tableNumber} (${table.capacity} Orang)
+
+                </option>
+
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+loadTables();
 
 // ================================
 // LOAD MENU
@@ -78,7 +119,7 @@ function renderMenu() {
             !image.startsWith("assets")
         ) {
 
-            image = `http://localhost:5000/uploads/${image}`;
+            image = `http://localhost:5000/uploads/${encodeURIComponent(image)}`;
 
         }
 
@@ -278,10 +319,30 @@ function minusQty(id){
 }
 
 // ================================
+// MODAL
+// ================================
+
+function openModal() {
+    checkoutModal.style.display = "flex";
+    document.getElementById("customerName").focus();
+}
+
+function closeModal() {
+    checkoutModal.style.display = "none";
+    checkoutForm.reset();
+}
+
+checkoutModal.addEventListener("click", (e) => {
+    if (e.target === checkoutModal) {
+        closeModal();
+    }
+});
+
+// ================================
 // CHECKOUT
 // ================================
 
-checkoutBtn.addEventListener("click", async () => {
+checkoutBtn.addEventListener("click", () => {
 
     if (cart.length === 0) {
 
@@ -291,20 +352,47 @@ checkoutBtn.addEventListener("click", async () => {
 
     }
 
-    const customerName = prompt("Nama Pemesan");
+    const tableId = tableSelect.value;
 
-    const customerPhone = prompt("Nomor HP");
+    if (!tableId) {
 
-    const tableId = prompt("Masukkan ID Meja");
+        alert("Silakan pilih meja terlebih dahulu.");
 
-    const orderNumber =
-        "ORD" + Date.now();
+        return;
+
+    }
+
+    openModal();
+
+});
+
+checkoutForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const customerName = document.getElementById("customerName").value.trim();
+    const customerPhone = document.getElementById("customerPhone").value.trim();
+
+    if (!customerName || !customerPhone) {
+
+        alert("Harap isi nama dan nomor HP.");
+
+        return;
+
+    }
+
+    if (!/^[0-9]+$/.test(customerPhone) || customerPhone.length < 10) {
+
+        alert("Nomor HP harus minimal 10 digit angka.");
+
+        return;
+
+    }
+
+    const tableId = tableSelect.value;
+    const orderNumber = "ORD" + Date.now();
 
     try {
-
-        // ======================
-        // CREATE ORDER
-        // ======================
 
         const orderResult = await postData("/orders", {
 
@@ -318,7 +406,7 @@ checkoutBtn.addEventListener("click", async () => {
 
         });
 
-        if(!orderResult.success){
+        if (!orderResult.success) {
 
             alert(orderResult.message);
 
@@ -326,35 +414,37 @@ checkoutBtn.addEventListener("click", async () => {
 
         }
 
-        const orderId =
-            orderResult.data.id;
+        const orderId = orderResult.data.id;
 
-        // ======================
-        // CREATE ORDER ITEM
-        // ======================
-
-        for(const item of cart){
+        for (const item of cart) {
 
             await postData("/order-items", {
 
                 orderId,
 
-                menuId:item.id,
+                menuId: item.id,
 
-                quantity:item.qty
+                quantity: item.qty
 
             });
 
         }
 
-        alert("Order berhasil dibuat.");
+        closeModal();
 
-        window.location.href=
-        `payment.html?id=${orderId}`;
+        alert("Order berhasil dibuat!");
 
-    } catch(error){
+        let payUrl = `payment.html?id=${orderId}`;
+
+        if (orderFrom) payUrl += `&from=${orderFrom}`;
+
+        window.location.href = payUrl;
+
+    } catch (error) {
 
         console.log(error);
+
+        alert("Terjadi kesalahan. Coba lagi.");
 
     }
 

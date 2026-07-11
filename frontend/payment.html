@@ -48,7 +48,11 @@
 
                 <h1>Pembayaran</h1>
 
-                <p>Silakan pilih metode pembayaran.</p>
+                <div id="orderInfo" class="order-info-box">
+
+                    <p>Memuat data pesanan...</p>
+
+                </div>
 
                 <form id="paymentForm">
 
@@ -62,9 +66,191 @@
 
                             <option value="QRIS">QRIS</option>
 
-                            <option value="TRANSFER">Transfer</option>
+                            <option value="TRANSFER">Transfer Bank</option>
 
                         </select>
+
+                    </div>
+
+                    <!-- Pilih Bank (muncul kalau Transfer) -->
+
+                    <div id="bankSection" class="form-group" style="display:none">
+
+                        <label>Pilih Bank</label>
+
+                        <select id="bankName">
+
+                            <option value="BRI">BRI</option>
+
+                            <option value="BCA">BCA</option>
+
+                            <option value="BNI">BNI</option>
+
+                            <option value="MANDIRI">MANDIRI</option>
+
+                            <option value="BSI">BSI</option>
+
+                            <option value="CIMB">CIMB Niaga</option>
+
+                            <option value="DANAMON">Danamon</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- QRIS (muncul kalau QRIS) -->
+
+                    <div id="qrisSection" class="qris-section" style="display:none">
+
+                        <div class="qris-box">
+
+                            <div class="qris-header">
+
+                                <span>Scan QRIS untuk Bayar</span>
+
+                            </div>
+
+                            <div class="qris-image">
+
+                                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+                                    <rect width="200" height="200" fill="white"/>
+
+                                    <!-- QR pattern placeholder -->
+
+                                    <rect x="20" y="20" width="40" height="40" rx="4" fill="#2C1810"/>
+
+                                    <rect x="24" y="24" width="32" height="32" rx="2" fill="white"/>
+
+                                    <rect x="30" y="30" width="20" height="20" rx="2" fill="#2C1810"/>
+
+                                    <rect x="140" y="20" width="40" height="40" rx="4" fill="#2C1810"/>
+
+                                    <rect x="144" y="24" width="32" height="32" rx="2" fill="white"/>
+
+                                    <rect x="150" y="30" width="20" height="20" rx="2" fill="#2C1810"/>
+
+                                    <rect x="20" y="140" width="40" height="40" rx="4" fill="#2C1810"/>
+
+                                    <rect x="24" y="144" width="32" height="32" rx="2" fill="white"/>
+
+                                    <rect x="30" y="150" width="20" height="20" rx="2" fill="#2C1810"/>
+
+                                    <!-- Data modules -->
+
+                                    <rect x="70" y="20" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="86" y="20" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="20" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="118" y="20" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="36" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="36" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="86" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="118" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="134" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="150" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="86" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="86" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="134" y="86" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="20" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="36" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="20" y="86" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="52" y="86" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="20" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="36" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="52" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="118" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="150" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="118" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="86" y="118" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="134" y="118" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="150" y="118" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="134" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="134" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="118" y="134" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="150" y="134" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="86" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="118" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="134" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="150" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="70" y="166" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="102" y="166" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="134" y="166" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="70" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="86" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="102" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="118" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="134" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="150" width="8" height="8" fill="#2C1810"/>
+
+                                    <rect x="166" y="166" width="8" height="8" fill="#2C1810"/>
+
+                                    <!-- Center logo area -->
+
+                                    <rect x="82" y="82" width="36" height="36" rx="6" fill="#C9783E"/>
+
+                                    <text x="100" y="106" text-anchor="middle" fill="white" font-size="16" font-weight="bold">K</text>
+
+                                </svg>
+
+                            </div>
+
+                            <p class="qris-instruction">Buka aplikasi banking atau e-wallet lalu scan kode QR ini</p>
+
+                        </div>
 
                     </div>
 
@@ -72,7 +258,14 @@
 
                         <label>Jumlah Bayar</label>
 
-                        <input placeholder="Masukkan jumlah bayar" type="number" id="paidAmount" required>
+                        <input
+                            placeholder="Masukkan jumlah bayar"
+                            type="number"
+                            id="paidAmount"
+                            min="0"
+                            required>
+
+                        <small id="minPayNote" class="min-pay-note"></small>
 
                     </div>
 

@@ -34,3 +34,10 @@
   font-size: 16px;
   padding: 16px 40px;
 }
+
+.success-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

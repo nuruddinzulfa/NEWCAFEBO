@@ -64,3 +64,130 @@
   font-size: 16px;
   margin-top: 8px;
 }
+
+.order-info-box {
+  background: var(--gray-100);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  border-left: 4px solid var(--primary);
+}
+
+.order-info-box .order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 15px;
+}
+
+.order-info-box .order-row span:first-child {
+  color: var(--gray-500);
+}
+
+.order-info-box .order-row span:last-child {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.order-info-box .order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 2px solid var(--gray-200);
+  font-size: 20px;
+}
+
+.order-info-box .order-total span:first-child {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.order-info-box .order-total span:last-child {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.min-pay-note {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+.order-type-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.badge-reservation {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badge-table {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.order-pay-info {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--gray-300);
+  font-size: 13px;
+  color: var(--gray-500);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* QRIS Section */
+.qris-section {
+  margin-bottom: 24px;
+}
+
+.qris-box {
+  background: var(--gray-100);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  border: 2px dashed var(--gray-300);
+}
+
+.qris-header {
+  margin-bottom: 16px;
+}
+
+.qris-header span {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--secondary);
+}
+
+.qris-image {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 16px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+
+.qris-image svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qris-instruction {
+  font-size: 13px;
+  color: var(--gray-400);
+  margin: 0;
+}

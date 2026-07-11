@@ -242,8 +242,15 @@ searchInput.addEventListener("keyup", () => {
 
 function orderMenu(id) {
 
-    window.location.href =
-        `order.html?menu=${id}`;
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const from = urlParams.get("from");
+
+    let url = `order.html?menu=${id}`;
+
+    if (from) url += `&from=${from}`;
+
+    window.location.href = url;
 
 }
 

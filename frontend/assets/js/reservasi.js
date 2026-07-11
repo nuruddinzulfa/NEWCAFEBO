@@ -109,9 +109,9 @@ form.addEventListener("submit", async (e) => {
 
     if (result.success) {
 
-        alert("Reservasi berhasil.");
+        alert("Reservasi berhasil! Mengalihkan ke menu...");
 
-        form.reset();
+        window.location.href = "menu.html?from=reservation";
 
     } else {
 
