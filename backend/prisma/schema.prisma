@@ -118,10 +118,6 @@ model RestaurantTable {
 model Reservation {
   id String @id @default(uuid())
 
-  customerName  String
-  customerPhone String
-  customerEmail String?
-
   reservationDate DateTime
   numberOfGuests  Int
 

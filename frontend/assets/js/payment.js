@@ -246,6 +246,10 @@ form.addEventListener("submit", async (e) => {
         alert("Pembayaran berhasil! Pesanan telah dikonfirmasi.");
 
         localStorage.removeItem("cart");
+        localStorage.removeItem("reservedTableId");
+
+        orderInfoBox.innerHTML = "";
+        document.getElementById("paymentForm").style.display = "none";
 
         window.location.href = "success.html";
 

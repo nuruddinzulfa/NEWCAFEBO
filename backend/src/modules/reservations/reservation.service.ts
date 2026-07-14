@@ -27,6 +27,13 @@ export class ReservationService {
       throw new Error("Table is inactive");
     }
 
+    // Cek apakah jumlah orang sesuai kapasitas meja
+    if (data.numberOfGuests > table.capacity) {
+      throw new Error(
+        `Jumlah orang (${data.numberOfGuests}) melebihi kapasitas meja (${table.capacity} Orang). Silakan pilih meja yang sesuai.`
+      );
+    }
+
     return this.reservationRepository.create(data);
   }
 
@@ -70,6 +77,26 @@ export class ReservationService {
       // Cek apakah meja masih aktif
       if (!table.isActive) {
         throw new Error("Table is inactive");
+      }
+
+      // Cek apakah jumlah orang sesuai kapasitas meja baru
+      const guests = data.numberOfGuests ?? reservation.numberOfGuests;
+      if (guests > table.capacity) {
+        throw new Error(
+          `Jumlah orang (${guests}) melebihi kapasitas meja (${table.capacity} Orang). Silakan pilih meja yang sesuai.`
+        );
+      }
+    } else if (data.numberOfGuests) {
+      // Jika hanya ganti jumlah orang tanpa ganti meja, tetap validasi kapasitas
+      const table =
+        await this.tableRepository.findById(
+          reservation.tableId
+        );
+
+      if (table && data.numberOfGuests > table.capacity) {
+        throw new Error(
+          `Jumlah orang (${data.numberOfGuests}) melebihi kapasitas meja (${table.capacity} Orang). Silakan pilih meja yang sesuai.`
+        );
       }
     }
 

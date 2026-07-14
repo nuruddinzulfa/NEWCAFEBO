@@ -51,6 +51,20 @@ async function loadTables() {
 
         });
 
+        if (orderFrom === "reservation") {
+
+            document.getElementById("tableSelectGroup").style.display = "none";
+
+            const reservedTableId = localStorage.getItem("reservedTableId");
+
+            if (reservedTableId) {
+
+                tableSelect.value = reservedTableId;
+
+            }
+
+        }
+
     } catch (error) {
 
         console.log(error);

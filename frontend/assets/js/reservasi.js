@@ -39,7 +39,7 @@ async function loadTables() {
 
             tableSelect.innerHTML += `
 
-                <option value="${table.id}">
+                <option value="${table.id}" data-capacity="${table.capacity}">
 
                     Meja ${table.tableNumber}
                     (${table.capacity} Orang)
@@ -84,21 +84,20 @@ form.addEventListener("submit", async (e) => {
 
     );
 
+    const numberOfGuests = Number(document.getElementById("numberOfGuests").value);
+    const selectedOption = tableSelect.options[tableSelect.selectedIndex];
+    const tableCapacity = selectedOption ? parseInt(selectedOption.getAttribute("data-capacity") || "0") : 0;
+
+    if (numberOfGuests > tableCapacity) {
+        alert(`Jumlah orang (${numberOfGuests}) melebihi kapasitas meja (${tableCapacity} Orang). Silakan pilih meja yang sesuai.`);
+        return;
+    }
+
     const data = {
-
-        customerName:
-        document.getElementById("customerName").value,
-
-        customerPhone:
-        document.getElementById("customerPhone").value,
-
-        customerEmail:
-        document.getElementById("customerEmail").value,
 
         reservationDate,
 
-        numberOfGuests:
-        Number(document.getElementById("numberOfGuests").value),
+        numberOfGuests,
 
         tableId:
         tableSelect.value
@@ -108,6 +107,8 @@ form.addEventListener("submit", async (e) => {
     const result = await postData("/reservations", data);
 
     if (result.success) {
+
+        localStorage.setItem("reservedTableId", tableSelect.value);
 
         alert("Reservasi berhasil! Mengalihkan ke menu...");
 

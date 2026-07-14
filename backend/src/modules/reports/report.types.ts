@@ -15,7 +15,6 @@ export interface MenuReportResponse {
 }
 
 export interface ReservationReportResponse {
-  customerName: string;
   tableNumber: number;
   status: string;
   reservationDate: Date;
