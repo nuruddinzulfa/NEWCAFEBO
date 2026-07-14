@@ -27,7 +27,7 @@ form.addEventListener("submit", async (e) => {
         if (result.success) {
             localStorage.setItem("token", result.data.accessToken);
             localStorage.setItem("user", JSON.stringify(result.data.user));
-            alert("Login berhasil! Selamat datang di Kopilogi.");
+            
             window.location.href = "index.html";
         } else {
             alert(result.message || "Login gagal.");
