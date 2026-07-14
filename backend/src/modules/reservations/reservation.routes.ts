@@ -7,6 +7,7 @@ const reservationController = new ReservationController();
 
 // CRUD Routes
 router.post("/", protect, reservationController.create);
+router.get("/upcoming", protect, reservationController.findUpcoming);
 router.get("/", protect, reservationController.findAll);
 router.get("/:id", protect, reservationController.findById);
 router.patch("/:id", protect, reservationController.update);

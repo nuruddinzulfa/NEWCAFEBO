@@ -41,6 +41,13 @@ export class ReservationService {
     return this.reservationRepository.findAll();
   }
 
+  async findUpcoming() {
+    const now = new Date();
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7);
+    return this.reservationRepository.findUpcoming(startOfDay, endDate);
+  }
+
   async findById(id: string) {
     const reservation =
       await this.reservationRepository.findById(id);

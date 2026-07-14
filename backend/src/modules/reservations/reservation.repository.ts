@@ -25,6 +25,26 @@ export class ReservationRepository {
     });
   }
 
+  async findUpcoming(startDate: Date, endDate: Date) {
+    return prisma.reservation.findMany({
+      where: {
+        reservationDate: {
+          gte: startDate,
+          lte: endDate
+        },
+        status: {
+          in: ["PENDING", "CONFIRMED"]
+        }
+      },
+      include: {
+        table: true
+      },
+      orderBy: {
+        reservationDate: "asc"
+      }
+    });
+  }
+
   async findById(id: string) {
     return prisma.reservation.findUnique({
       where: {

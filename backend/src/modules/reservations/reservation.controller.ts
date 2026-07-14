@@ -24,6 +24,25 @@ export class ReservationController {
     }
   }
 
+  async findUpcoming(req: Request, res: Response) {
+    try {
+      const result = await reservationService.findUpcoming();
+
+      return res.status(200).json({
+        success: true,
+        data: result
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to get upcoming reservations"
+      });
+    }
+  }
+
   async findAll(req: Request, res: Response) {
     try {
       const result = await reservationService.findAll();
